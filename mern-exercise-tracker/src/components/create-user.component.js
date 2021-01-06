@@ -1,4 +1,5 @@
 import React , { Component } from 'react';
+import axios from 'axios';
 
 export default class CreateUser extends Component {
     constructor(props) {
@@ -24,6 +25,10 @@ export default class CreateUser extends Component {
             username: this.state.username
         } 
         console.log(user);
+
+        axios.post('http://localhost:5000/users/add', user)
+            .then(res => console.log(res.data))
+
         this.setState({
             username: ''
         })
@@ -40,7 +45,7 @@ export default class CreateUser extends Component {
                             required
                             className='form-control'
                             value={this.state.username}
-                            onChange={this.state.onChangeUsername}
+                            onChange={this.onChangeUsername}
                              />      
                     </div>
 
